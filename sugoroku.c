@@ -3,13 +3,6 @@
 #include<time.h>
 #include<math.h>
 
-//hogehoge
-
-//kawame_dayo
-
-//aaaaaa
-
-
 #define TRUE 1
 #define FALSE 0
 //Field size
