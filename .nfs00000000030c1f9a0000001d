@@ -3,6 +3,8 @@
 #include<time.h>
 #include<math.h>
 
+// kotani
+
 #define TRUE 1
 #define FALSE 0
 //Field size
@@ -73,12 +75,12 @@ void game()
 
   system("clear");
 
-  //ã‚´ãƒ¼ãƒ«ã™ã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
+  //ƒS[ƒ‹‚·‚é‚Ü‚Åƒ‹[ƒv
   while (flag != TRUE) {
     dice(p, entry);
-    //å‚åŠ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ•°ã ã‘ãƒ«ãƒ¼ãƒ—
+    //Q‰ÁƒvƒŒƒCƒ„[‚Ì”‚¾‚¯ƒ‹[ƒv
     for (i = 0; i < entry; i++) {
-      //ãƒ€ã‚¤ã‚¹ã®æ•°ã ã‘ãƒ«ãƒ¼ãƒ—ï¼ˆãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç§»å‹•ä¸­ï¼‰
+      //ƒ_ƒCƒX‚Ì”‚¾‚¯ƒ‹[ƒviƒvƒŒƒCƒ„[ˆÚ“®’†j
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
 	printf("Payer%d Turn\n", i+1);
 	printf("Your remainig num : %d\n",dice_num);
@@ -158,25 +160,25 @@ void field_disp(int field[][WIDTH])
       switch (field[i][j])
 	{
 	case EMPTY :
-	  printf("â–¡");
+	  printf(" ");
 	  break;
 	case 1 :
-	  printf("ï¼‘");
+	  printf("‚P");
 	  break;
 	case 2:
-	  printf("ï¼’");
+	  printf("‚Q");
 	  break;
 	case 3:
-	  printf("ï¼“");
+	  printf("‚R");
 	  break;
 	case 4:
-	  printf("ï¼”");
+	  printf("‚S");
 	  break;
 	case GOAL :
-	  printf("â˜…");
+	  printf("š");
 	  break;
 	case WALL :
-	  printf("â– ");
+	  printf("¡");
 	  break;
 	default:
 	  break;
