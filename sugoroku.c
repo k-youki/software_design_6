@@ -3,13 +3,6 @@
 #include<time.h>
 #include<math.h>
 
-//hogehoge
-
-//kawame_dayo
-
-//aaaaaa
-
-
 #define TRUE 1
 #define FALSE 0
 //Field size
@@ -19,8 +12,6 @@
 #define MAX 4
 //Field States
 #define EMPTY 0
-#define GOAL -1
-#define WALL -2
 //Player States
 #define DOUBLE 1
 
@@ -38,24 +29,13 @@ void p_init(player p[]);
 void f_init(int field[][WIDTH], player p[], int entry);
 void field_disp(int field[][WIDTH]);
 void dice(player p[],int entry);
-int walk(player p[], int field[][WIDTH], int player);
+void walk(player p[], int field[][WIDTH], int player);
 
 int main(void)
 {
-	char c;
-	int Continue = TRUE;
   srand((unsigned)time(NULL));
   
-  while (Continue == TRUE) {
-	  game();
-	  puts("");
-	  printf("Continue? (y/n) :");
-	  scanf("%c", &c);
-	  scanf("%c", &c);
-	  if (c == 'n') {
-		  Continue = FALSE;
-	  }
-  }
+  game();
 
   return 0;
 }
@@ -90,15 +70,8 @@ void game()
 	      printf("Payer%d Turn\n", i+1);
 	      printf("Your remainig num : %d\n",dice_num);
 	      field_disp(field);
-	      flag = walk(p,field,i);
+	      walk(p,field,i);
 	      system("clear");
-	      if (flag == TRUE) {
-		printf("Player%d WIN!!!!!\n", i + 1);
-		break;
-	      }
-	    }
-	    if (flag == TRUE) {
-	      break;
 	    }
 	  }
 	}
@@ -118,17 +91,8 @@ void p_init(player p[])
 		p[i].pow_up = EMPTY;
 		p[i].pow_down = EMPTY;
 		p[i].dice_num = 0;
-
 	}
-
-	//Player Position Shufful
-	for (i = 0; i < MAX; i++) {
-		r1 = rand() % 4;
-		r2 = rand() % 4;
-		keep = p[r1].x;
-		p[r1].x = p[r2].x;
-		p[r2].x = keep;
-	}
+	
 }
 
 void f_init(int field[][WIDTH], player p[], int entry)
@@ -140,20 +104,12 @@ void f_init(int field[][WIDTH], player p[], int entry)
 			field[i][j] = EMPTY;
 		}
 	}
-	//Wall set
-	for (i = 1; i < HIEGHT-1; i++) {
-		if (i % 2 == 0) {
-			for (j = 0; j < rand() % 3 + 1; j++) {
-				field[i][rand() % 4] = WALL;
-			}
-		}
-	}
+
 	//Player set
 	for (i = 0; i < entry; i++) {
 		field[p[i].y][p[i].x] = p[i].num;
 	}
-	//Goal set
-	field[HIEGHT-1][rand() % 4] = GOAL;
+
 }
 
 void field_disp(int field[][WIDTH])
@@ -179,12 +135,6 @@ void field_disp(int field[][WIDTH])
 			case 4:
 				printf("‚S");
 				break;
-			case GOAL :
-				printf("š");
-				break;
-			case WALL :
-				printf("¡");
-				break;
 			default:
 				break;
 			}
@@ -202,7 +152,7 @@ void dice(player p[], int entry)
 	}
 }
 
-int walk(player p[], int field[][WIDTH], int player)
+void walk(player p[], int field[][WIDTH], int player)
 {
 	int key;
 	int error = TRUE;
@@ -220,19 +170,19 @@ int walk(player p[], int field[][WIDTH], int player)
 
 		switch (key)
 		{
-		case 8:
+		case 8://Right move
 			y--;
 			if (y >= 0) { error = FALSE; }
 			break;
-		case 2:
+		case 2://Down move
 			y++;
 			if (y < HIEGHT) { error = FALSE; }
 			break;
-		case 4:
+		case 4://Left move
 			x--;
 			if (x >= 0) { error = FALSE; }
 			break;
-		case 6:
+		case 6://Up move
 			x++;
 			if (x < WIDTH) { error = FALSE; }
 			break;
@@ -240,10 +190,8 @@ int walk(player p[], int field[][WIDTH], int player)
 			break;
 		}
 
-		if (field[y][x] == WALL) {
-			error = TRUE;
-		}
-		if (field[y][x] > 0) {
+		//Move Error
+		if (field[y][x] != EMPTY) {
 			error = TRUE;
 		}
 	}
@@ -251,11 +199,6 @@ int walk(player p[], int field[][WIDTH], int player)
 	p[player].x = x;
 	p[player].y = y;
 
-	if (field[p[player].y][p[player].x] == GOAL) {
-		return TRUE;
-	}
-
+	//Player position update
 	field[y][x] = p[player].num;
-
-	return FALSE;
 }
