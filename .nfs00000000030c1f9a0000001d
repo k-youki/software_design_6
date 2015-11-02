@@ -3,16 +3,7 @@
 #include<time.h>
 #include<math.h>
 
-<<<<<<< HEAD
 // kotani
-=======
-//hogehoge
-
-//kawame_dayo
-
-//aaaaaa
-
->>>>>>> 4f3b669b142232896cc66c45b7d8a923ebf821d1
 
 #define TRUE 1
 #define FALSE 0
