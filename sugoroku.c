@@ -3,16 +3,15 @@
 #include<time.h>
 #include<math.h>
 
-<<<<<<< HEAD
+
 // kotani
-=======
+
 //hogehoge
 
 //kawame_dayo
 
 //aaaaaa
 
->>>>>>> 4f3b669b142232896cc66c45b7d8a923ebf821d1
 
 #define TRUE 1
 #define FALSE 0
@@ -84,12 +83,12 @@ void game()
 
   system("clear");
 
-  //ƒS[ƒ‹‚·‚é‚Ü‚Åƒ‹[ƒv
+  //ã‚´ãƒ¼ãƒ«ã™ã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
   while (flag != TRUE) {
     dice(p, entry);
-    //Q‰ÁƒvƒŒƒCƒ„[‚Ì”‚¾‚¯ƒ‹[ƒv
+    //å‚åŠ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ•°ã ã‘ãƒ«ãƒ¼ãƒ—
     for (i = 0; i < entry; i++) {
-      //ƒ_ƒCƒX‚Ì”‚¾‚¯ƒ‹[ƒviƒvƒŒƒCƒ„[ˆÚ“®’†j
+      //ãƒ€ã‚¤ã‚¹ã®æ•°ã ã‘ãƒ«ãƒ¼ãƒ—ï¼ˆãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç§»å‹•ä¸­ï¼‰
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
 	printf("Payer%d Turn\n", i+1);
 	printf("Your remainig num : %d\n",dice_num);
@@ -169,25 +168,25 @@ void field_disp(int field[][WIDTH])
       switch (field[i][j])
 	{
 	case EMPTY :
-	  printf(" ");
+	  printf("â–¡");
 	  break;
 	case 1 :
-	  printf("‚P");
+	  printf("ï¼‘");
 	  break;
 	case 2:
-	  printf("‚Q");
+	  printf("ï¼’");
 	  break;
 	case 3:
-	  printf("‚R");
+	  printf("ï¼“");
 	  break;
 	case 4:
-	  printf("‚S");
+	  printf("ï¼”");
 	  break;
 	case GOAL :
-	  printf("š");
+	  printf("â˜…");
 	  break;
 	case WALL :
-	  printf("¡");
+	  printf("â– ");
 	  break;
 	default:
 	  break;
