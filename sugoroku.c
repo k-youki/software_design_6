@@ -5,6 +5,8 @@
 
 //hogehoge
 
+//kawame_dayo
+
 #define TRUE 1
 #define FALSE 0
 //Field size
