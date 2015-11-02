@@ -3,6 +3,8 @@
 #include<time.h>
 #include<math.h>
 
+//hogehoge
+
 #define TRUE 1
 #define FALSE 0
 //Field size
