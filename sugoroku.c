@@ -52,9 +52,13 @@ void game()
 
   player p[MAX];
 
+  /*
   printf("Number of entry (MAX:4) : ");
   scanf("%d", &entry);
+  */
 
+  entry = MAX;
+  
   p_init(p);
   f_init(field,p,entry);
 
@@ -83,8 +87,25 @@ void p_init(player p[])
   
   for (i = 0; i < MAX; i++) {
     p[i].num = i + 1;
-    p[i].x = i;
-    p[i].y = 0;
+    switch (i)
+      {
+      case 0 :
+	p[i].x = 0;
+	p[i].y = 1;
+	break;
+      case 1 :
+	p[i].x = 0;
+	p[i].y = 3;
+	break;
+      case 2:
+	p[i].x = WIDTH - 1;
+	p[i].y = 1;
+	break;
+      case 3:
+	p[i].x = WIDTH - 1;
+	p[i].y = 3;
+	break;
+      }
     p[i].pow_up = EMPTY;
     p[i].pow_down = EMPTY;
     p[i].dice_num = 0;
@@ -118,7 +139,7 @@ void field_disp(int field[][WIDTH])
       switch (field[i][j])
 	{
 	case EMPTY :
-	  printf("□");
+	  printf("・");
 	  break;
 	case 1 :
 	  printf("１");
