@@ -14,6 +14,7 @@
 #define EMPTY 0
 //Player States
 #define DOUBLE 1
+#define DEFHP 40
 
 typedef struct {
   int num;
@@ -22,6 +23,7 @@ typedef struct {
   int pow_up;
   int pow_down;
   int dice_num;
+  int helth;
 } player;
 
 void game();
@@ -69,6 +71,7 @@ void game()
     for (i = 0; i < entry; i++) {
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
 	printf("Payer%d Turn\n", i+1);
+	printf("Your helth is %d\n",p[i].helth);
 	printf("Your remainig num : %d\n",dice_num);
 	field_disp(field);
 	walk(p,field,i);
@@ -109,6 +112,7 @@ void p_init(player p[])
     p[i].pow_up = EMPTY;
     p[i].pow_down = EMPTY;
     p[i].dice_num = 0;
+    p[i].helth = DEFHP;
   }
   
 }
