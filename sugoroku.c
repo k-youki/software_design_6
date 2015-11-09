@@ -6,8 +6,8 @@
 #define TRUE 1
 #define FALSE 0
 //Field size
-#define WIDTH 4
-#define HIEGHT 20
+#define WIDTH 32
+#define HIEGHT 5
 //player num
 #define MAX 4
 //Field States
