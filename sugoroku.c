@@ -1,7 +1,7 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#include<math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -29,7 +29,7 @@ typedef struct {
 void game();
 void p_init(player p[]);
 void f_init(int field[][WIDTH], player p[], int entry);
-void field_disp(int field[][WIDTH]);
+void field_disp(int field[][WIDTH], int player);
 void dice(player p[],int entry);
 void walk(player p[], int field[][WIDTH], int player);
 
@@ -70,10 +70,10 @@ void game()
     dice(p, entry);
     for (i = 0; i < entry; i++) {
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
-	printf("Payer%d Turn\n", i+1);
+	printf("Player%d Turn\n", i+1);
 	printf("Your helth is %d\n",p[i].helth);
 	printf("Your remainig num : %d\n",dice_num);
-	field_disp(field);
+	field_disp(field,i);
 	walk(p,field,i);
 	system("clear");
       }
@@ -134,28 +134,32 @@ void f_init(int field[][WIDTH], player p[], int entry)
   
 }
 
-void field_disp(int field[][WIDTH])
+void field_disp(int field[][WIDTH], int player)
 {
   int i, j;
-  
+
   for (i = 0; i < HIEGHT; i++) {
     for (j = 0; j < WIDTH; j++) {
       switch (field[i][j])
 	{
 	case EMPTY :
-	  printf("・");
+	  printf("\e[0m・");
 	  break;
 	case 1 :
-	  printf("１");
+	  if(player == 0) printf("\e[31m１");
+	  else	          printf("\e[0m１");
 	  break;
 	case 2:
-	  printf("２");
+	  if(player == 1) printf("\e[31m２");
+	  else	          printf("\e[0m２");
 	  break;
 	case 3:
-	  printf("３");
+	  if(player == 2) printf("\e[31m３");
+	  else	          printf("\e[0m３");
 	  break;
 	case 4:
-	  printf("４");
+	  if(player == 3) printf("\e[31m４");
+	  else	          printf("\e[0m４");
 	  break;
 	default:
 	  break;
