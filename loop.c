@@ -55,8 +55,8 @@ void game()
   player p[MAX];
 
   /*
-  printf("Number of entry (MAX:4) : ");
-  scanf("%d", &entry);
+    printf("Number of entry (MAX:4) : ");
+    scanf("%d", &entry);
   */
 
   entry = MAX;
@@ -132,41 +132,6 @@ void f_init(int field[][WIDTH], player p[], int entry)
     field[p[i].y][p[i].x] = p[i].num;
   }
   
-}
-
-void field_disp(int field[][WIDTH], int player)
-{
-  int i, j;
-
-  for (i = 0; i < HIEGHT; i++) {
-    for (j = 0; j < WIDTH; j++) {
-      switch (field[i][j])
-	{
-	case EMPTY :
-	  printf("\e[0m・");
-	  break;
-	case 1 :
-	  if(player == 0) printf("\e[31m１");
-	  else	          printf("\e[0m１");
-	  break;
-	case 2:
-	  if(player == 1) printf("\e[31m２");
-	  else	          printf("\e[0m２");
-	  break;
-	case 3:
-	  if(player == 2) printf("\e[31m３");
-	  else	          printf("\e[0m３");
-	  break;
-	case 4:
-	  if(player == 3) printf("\e[31m４");
-	  else	          printf("\e[0m４");
-	  break;
-	default:
-	  break;
-	}
-    }
-    puts("");
-  }
 }
 
 void dice(player p[], int entry)
