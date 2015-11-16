@@ -2,19 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-
-#define TRUE 1
-#define FALSE 0
-//Field size
-#define WIDTH 32
-#define HIEGHT 5
-//player num
-#define MAX 4
-//Field States
-#define EMPTY 0
-//Player States
-#define DOUBLE 1
-#define DEFHP 40
+#include "define.h"
 
 typedef struct {
   int num;
@@ -70,6 +58,7 @@ void game()
     dice(p, entry);
     for (i = 0; i < entry; i++) {
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
+	//message(p,i,dice_num);
 	printf("Player%d Turn\n", i+1);
 	printf("Your helth is %d\n",p[i].helth);
 	printf("Your remainig num : %d\n",dice_num);

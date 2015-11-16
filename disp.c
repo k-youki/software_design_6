@@ -1,3 +1,15 @@
+#include <stdio.h>
+#include "define.h"
+
+/*
+void message(player p[],int i,int dice_num)
+{
+  printf("Player%d Turn\n", i+1);
+  printf("Your helth is %d\n",p[i].helth);
+  printf("Your remainig num : %d\n",dice_num);
+}
+*/
+
 void field_disp(int field[][WIDTH], int player)
 {
   int i, j;
