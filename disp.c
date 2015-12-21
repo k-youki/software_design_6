@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include "define.h"
 
-/*
 void message(player p[],int i,int dice_num)
 {
   printf("Player%d Turn\n", i+1);
   printf("Your helth is %d\n",p[i].helth);
   printf("Your remainig num : %d\n",dice_num);
 }
-*/
+
 
 void field_disp(int field[][WIDTH], int player)
 {
@@ -19,24 +18,30 @@ void field_disp(int field[][WIDTH], int player)
       switch (field[i][j])
 	{
 	case EMPTY :
-	  printf("\e[0m°¶");
+	  printf("\e[0mÅE");
 	  break;
 	case 1 :
-	  if(player == 0) printf("\e[31m£±");
-	  else	          printf("\e[0m£±");
+	  if(player == 0) printf("\e[31mÇP");
+	  else	          printf("\e[0mÇP");
 	  break;
 	case 2:
-	  if(player == 1) printf("\e[31m£≤");
-	  else	          printf("\e[0m£≤");
+	  if(player == 1) printf("\e[31mÇQ");
+	  else	          printf("\e[0mÇQ");
 	  break;
 	case 3:
-	  if(player == 2) printf("\e[31m£≥");
-	  else	          printf("\e[0m£≥");
+	  if(player == 2) printf("\e[31mÇR");
+	  else	          printf("\e[0mÇR");
 	  break;
 	case 4:
-	  if(player == 3) printf("\e[31m£¥");
-	  else	          printf("\e[0m£¥");
+	  if(player == 3) printf("\e[31mÇS");
+	  else	          printf("\e[0mÇS");
 	  break;
+	case M_TOWER :
+		printf("Åü");
+		break;
+	case S_TOWER :
+		printf("Åû");
+		break;
 	default:
 	  break;
 	}
