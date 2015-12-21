@@ -36,6 +36,7 @@ typedef struct {
 	int pow_down;
 	int dice_num;
 	int helth;
+        int team;
 } player;
 
 typedef struct {
