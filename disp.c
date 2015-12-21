@@ -18,29 +18,29 @@ void field_disp(int field[][WIDTH], int player)
       switch (field[i][j])
 	{
 	case EMPTY :
-	  printf("\e[0mE");
+	  printf("\e[0mo");
 	  break;
 	case 1 :
-	  if(player == 0) printf("\e[31m‚P");
-	  else	          printf("\e[0m‚P");
+	  if(player == 0) printf("\e[31m1");
+	  else	          printf("\e[0m1");
 	  break;
 	case 2:
-	  if(player == 1) printf("\e[31m‚Q");
-	  else	          printf("\e[0m‚Q");
+	  if(player == 1) printf("\e[31m2");
+	  else	          printf("\e[0m2");
 	  break;
 	case 3:
-	  if(player == 2) printf("\e[31m‚R");
-	  else	          printf("\e[0m‚R");
+	  if(player == 2) printf("\e[31m3");
+	  else	          printf("\e[0m3");
 	  break;
 	case 4:
-	  if(player == 3) printf("\e[31m‚S");
-	  else	          printf("\e[0m‚S");
+	  if(player == 3) printf("\e[31m4");
+	  else	          printf("\e[0m4");
 	  break;
 	case M_TOWER :
-		printf("Ÿ");
+		printf("i");
 		break;
 	case S_TOWER :
-		printf("");
+		printf("l");
 		break;
 	default:
 	  break;
