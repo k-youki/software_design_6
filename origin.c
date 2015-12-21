@@ -1,19 +1,20 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#include<math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
 
 #define TRUE 1
 #define FALSE 0
 //Field size
-#define WIDTH 4
-#define HIEGHT 20
+#define WIDTH 32
+#define HIEGHT 5
 //player num
 #define MAX 4
 //Field States
 #define EMPTY 0
 //Player States
 #define DOUBLE 1
+#define DEFHP 40
 
 typedef struct {
   int num;
@@ -22,12 +23,13 @@ typedef struct {
   int pow_up;
   int pow_down;
   int dice_num;
+  int helth;
 } player;
 
 void game();
 void p_init(player p[]);
 void f_init(int field[][WIDTH], player p[], int entry);
-void field_disp(int field[][WIDTH]);
+void field_disp(int field[][WIDTH], int player);
 void dice(player p[],int entry);
 void walk(player p[], int field[][WIDTH], int player);
 
@@ -52,9 +54,13 @@ void game()
 
   player p[MAX];
 
+  /*
   printf("Number of entry (MAX:4) : ");
   scanf("%d", &entry);
+  */
 
+  entry = MAX;
+  
   p_init(p);
   f_init(field,p,entry);
 
@@ -64,9 +70,10 @@ void game()
     dice(p, entry);
     for (i = 0; i < entry; i++) {
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
-	printf("Payer%d Turn\n", i+1);
+	printf("Player%d Turn\n", i+1);
+	printf("Your helth is %d\n",p[i].helth);
 	printf("Your remainig num : %d\n",dice_num);
-	field_disp(field);
+	field_disp(field,i);
 	walk(p,field,i);
 	system("clear");
       }
@@ -83,11 +90,29 @@ void p_init(player p[])
   
   for (i = 0; i < MAX; i++) {
     p[i].num = i + 1;
-    p[i].x = i;
-    p[i].y = 0;
+    switch (i)
+      {
+      case 0 :
+	p[i].x = 0;
+	p[i].y = 1;
+	break;
+      case 1 :
+	p[i].x = 0;
+	p[i].y = 3;
+	break;
+      case 2:
+	p[i].x = WIDTH - 1;
+	p[i].y = 1;
+	break;
+      case 3:
+	p[i].x = WIDTH - 1;
+	p[i].y = 3;
+	break;
+      }
     p[i].pow_up = EMPTY;
     p[i].pow_down = EMPTY;
     p[i].dice_num = 0;
+    p[i].helth = DEFHP;
   }
   
 }
@@ -109,28 +134,32 @@ void f_init(int field[][WIDTH], player p[], int entry)
   
 }
 
-void field_disp(int field[][WIDTH])
+void field_disp(int field[][WIDTH], int player)
 {
   int i, j;
-  
+
   for (i = 0; i < HIEGHT; i++) {
     for (j = 0; j < WIDTH; j++) {
       switch (field[i][j])
 	{
 	case EMPTY :
-	  printf("□");
+	  printf("\e[0m・");
 	  break;
 	case 1 :
-	  printf("１");
+	  if(player == 0) printf("\e[31m１");
+	  else	          printf("\e[0m１");
 	  break;
 	case 2:
-	  printf("２");
+	  if(player == 1) printf("\e[31m２");
+	  else	          printf("\e[0m２");
 	  break;
 	case 3:
-	  printf("３");
+	  if(player == 2) printf("\e[31m３");
+	  else	          printf("\e[0m３");
 	  break;
 	case 4:
-	  printf("４");
+	  if(player == 3) printf("\e[31m４");
+	  else	          printf("\e[0m４");
 	  break;
 	default:
 	  break;
