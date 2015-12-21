@@ -98,6 +98,12 @@ void p_init(player p[])
     p[i].pow_down = EMPTY;
     p[i].dice_num = 0;
     p[i].helth = DEFHP;
+    if(MAX/2 > i){
+      p[i].team = ALPHA;
+    }
+    else {
+      p[i].team = BETA;
+    }
   }
   
 }
