@@ -61,7 +61,7 @@ void game()
 	  else
 	    flag_action = walk(p, field, i, key);
 	}
-	flag = win_loss_judgment(mt);
+	//flag = win_loss_judgment(mt);
 	system("clear");
       }
     }
