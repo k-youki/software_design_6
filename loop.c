@@ -13,7 +13,7 @@ void dice(player p[],int entry);
 int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
 int tower_wall();
 int attack(player p[], int field[][WIDTH], int player, int key);
-int win_loss_judgment(main_tower mt[]);
+int win_loss_judgement(main_tower mt[]);
 
 int main(void)
 {
@@ -62,7 +62,6 @@ void game()
 	  else
 	    flag_action = walk(p, field, i, key, st);
 	}
-	//tower_wall();
 	//flag = win_loss_judgment(mt);
 	system("clear");
       }
@@ -237,7 +236,7 @@ int attack(player p[], int field[][WIDTH], int player, int key)
   printf("Attack!!\n");
 }
 
-int win_loss_judgment(main_tower mt[])
+int win_loss_judgement(main_tower mt[])
 {
   // return Win team(ALPHA or BETA)
   
