@@ -10,7 +10,8 @@ void t_init(main_tower mt[], sub_tower st[]);
 void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_tower st[]);
 void field_disp(int field[][WIDTH], int player);
 void dice(player p[],int entry);
-int walk(player p[], int field[][WIDTH], int player, int key);
+int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
+int tower_wall();
 int attack(player p[], int field[][WIDTH], int player, int key);
 int win_loss_judgment(main_tower mt[]);
 
@@ -59,9 +60,10 @@ void game()
 	  if (key == ATTACK)
 	    flag_action = attack(p, field, i, key);
 	  else
-	    flag_action = walk(p, field, i, key);
+	    flag_action = walk(p, field, i, key, st);
 	}
-	flag = win_loss_judgment(mt);
+	//tower_wall();
+	//flag = win_loss_judgment(mt);
 	system("clear");
       }
     }
@@ -175,7 +177,7 @@ void dice(player p[], int entry)
   }
 }
 
-int walk(player p[], int field[][WIDTH], int player, int key)
+int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
 {
   int error = TRUE;
   int x, y;
@@ -222,6 +224,12 @@ int walk(player p[], int field[][WIDTH], int player, int key)
     field[y][x] = p[player].num;
     return TRUE;//action OK
   }
+}
+
+int tower_wall()
+{
+
+
 }
 
 int attack(player p[], int field[][WIDTH], int player, int key)
