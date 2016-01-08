@@ -12,7 +12,7 @@ void field_disp(int field[][WIDTH], int player);
 void dice(player p[],int entry);
 int walk(player p[], int field[][WIDTH], int player, int key);
 int attack(player p[], int field[][WIDTH], int player, int key);
-int win_loss_judgment(main_tower mt[]);
+int win_loss_judgement(main_tower mt[]);
 
 int main(void)
 {
@@ -229,7 +229,7 @@ int attack(player p[], int field[][WIDTH], int player, int key)
   printf("Attack!!\n");
 }
 
-int win_loss_judgment(main_tower mt[])
+int win_loss_judgement(main_tower mt[])
 {
   // return Win team(ALPHA or BETA)
   
