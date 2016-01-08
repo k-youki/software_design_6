@@ -12,6 +12,7 @@ void field_disp(int field[][WIDTH], int player);
 void dice(player p[],int entry);
 int walk(player p[], int field[][WIDTH], int player, int key);
 int attack(player p[], int field[][WIDTH], int player, int key);
+int win_loss_judgment(main_tower mt[]);
 
 int main(void)
 {
@@ -46,7 +47,7 @@ void game()
 
   system("clear");
 
-  while (flag != TRUE) {
+  while (flag == FALSE) {
     dice(p, entry);
     for (i = 0; i < entry; i++) {
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
@@ -60,6 +61,7 @@ void game()
 	  else
 	    flag_action = walk(p, field, i, key);
 	}
+	flag = win_loss_judgment(mt);
 	system("clear");
       }
     }
@@ -225,4 +227,11 @@ int walk(player p[], int field[][WIDTH], int player, int key)
 int attack(player p[], int field[][WIDTH], int player, int key)
 {
   printf("Attack!!\n");
+}
+
+int win_loss_judgment(main_tower mt[])
+{
+  // return Win team(ALPHA or BETA)
+  
+
 }
