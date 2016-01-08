@@ -8,6 +8,8 @@
   start_color();
   assume_default_colors(COLOR_BLACK,COLOR_WHITE);
   init_pair(2,COLOR_RED,COLOR_BLACK);
+  init_pair(3,COLOR_GREEN,COLOR_WHITE);
+  init_pair(4,COLOR_BLUE,COLOR_WHITE);
   }
 */
 
@@ -100,16 +102,16 @@ void field_disp(int field[][WIDTH], int player)
 	    }
 	    break;
 	  case M_TOWER :
-	    printf("\e[0mT ");
+	    printf("\e[32mT ");
 	    /*
-	      attrset(0);
+	      attrset(COLOR_PAIR(3));
 	      printw("T ");
 	    */
 	    break;
 	  case S_TOWER :
-	    printf("\e[0mi ");
+	    printf("\e[34mi ");
 	    /*
-	      attrset(0);
+	      attrset(COLOR_PAIR(4));
 	      printw("i ");
 	    */
 	    break;
