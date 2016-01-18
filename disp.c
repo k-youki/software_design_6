@@ -8,8 +8,11 @@
   start_color();
   assume_default_colors(COLOR_BLACK,COLOR_WHITE);
   init_pair(2,COLOR_RED,COLOR_BLACK);
+<<<<<<< HEAD
+=======
   init_pair(3,COLOR_GREEN,COLOR_WHITE);
   init_pair(4,COLOR_BLUE,COLOR_WHITE);
+>>>>>>> 1e132152ccc8af5458aa40e02281c6a1e9e8a519
   }
 */
 
@@ -134,3 +137,4 @@ void winner(int win)
   else if(win == BETA)
     printf("BETA team Win\n");
 }
+
