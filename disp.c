@@ -107,21 +107,6 @@ void field_disp(int field[][WIDTH], int player)
 	    }
 	    break;
 	  case M_TOWER :
-<<<<<<< HEAD
-	    printf("\e[0mT ");
-	    /*
-	      attrset(0);
-	      printw("T ");
-	    */
-	    break;
-	  case S_TOWER :
-	    printf("\e[0mi ");
-	    /*
-	      attrset(0);
-	      printw("i ");
-	    */
-	    break;
-=======
 	    printf("\e[32mT ");
 	    /*
 	      attrset(COLOR_PAIR(3));
@@ -135,7 +120,6 @@ void field_disp(int field[][WIDTH], int player)
 	      printw("i ");
 	    */
 	    break;
->>>>>>> 1e132152ccc8af5458aa40e02281c6a1e9e8a519
 	  default:
 	    break;
 	  }
@@ -146,8 +130,6 @@ void field_disp(int field[][WIDTH], int player)
   }
 }
 
-<<<<<<< HEAD
-=======
 void winner(int win)
 {
   if(win == ALPHA)
@@ -155,4 +137,4 @@ void winner(int win)
   else if(win == BETA)
     printf("BETA team Win\n");
 }
->>>>>>> 1e132152ccc8af5458aa40e02281c6a1e9e8a519
+

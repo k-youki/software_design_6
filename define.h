@@ -6,9 +6,12 @@
 //player num
 #define MAX 4
 //Field States
+//1~4 already use player number
 #define EMPTY 0
 #define M_TOWER -1
 #define S_TOWER -2
+#define ALPHA_WALL -3
+#define BETA_WALL -4
 //Player States
 #define DOUBLE 1
 #define DEFHP 40

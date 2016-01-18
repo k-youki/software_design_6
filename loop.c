@@ -10,15 +10,10 @@ void p_init(player p[]);
 void t_init(main_tower mt[], sub_tower st[]);
 void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_tower st[]);
 void field_disp(int field[][WIDTH], int player);
-<<<<<<< HEAD
 player dice(player p);
 void dise_num_disp(player p);
-int walk(player p[], int field[][WIDTH], int player, int key);
-=======
-void dice(player p[],int entry);
 int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
-int tower_wall();
->>>>>>> 1e132152ccc8af5458aa40e02281c6a1e9e8a519
+int tower_wall(int field[][WIDTH], sub_tower st[]);
 int attack(player p[], int field[][WIDTH], int player, int key);
 int win_loss_judgement(main_tower mt[]);
 
@@ -55,12 +50,7 @@ void game()
 
   system("clear");
 
-<<<<<<< HEAD
-  while (flag != TRUE) {
-=======
   while (flag == FALSE) {
-    dice(p, entry);
->>>>>>> 1e132152ccc8af5458aa40e02281c6a1e9e8a519
     for (i = 0; i < entry; i++) {
       p[i] = dice(p[i]);
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
@@ -81,6 +71,7 @@ void game()
 	    flag_action = walk(p, field, i, key, st);
 	  printf("base1=%d,base2=%d\n",mt[0].health,mt[1].health);
 	}
+	//tower_wall(field);
 	flag = win_loss_judgement(mt);
 	system("clear");
       }
@@ -200,7 +191,7 @@ player dice(player p)
   p.dice_num = rand() % 6 + 1;
   printf("dice_num : %d\n",p.dice_num);
   dise_num_disp(p);
-  sleep(3);
+  sleep(1);
   system("clear");
     
   return p;
@@ -301,9 +292,43 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
   }
 }
 
-int tower_wall()
+int tower_wall(int field[][WIDTH], sub_tower st[])
 {
-
+  int i,j;
+  
+  for(i=0;i<S_TOWER_NUM;i++){
+    switch(st[i].team)
+      {
+      case ALPHA:
+	if(st[i].health > 0){
+	  for(j=0;j<HIEGHT;j++){
+	    if(field[j][st[i].x] == EMPTY || field[j][st[i].x] == ALPHA_WALL)
+	      field[j][st[i].x] = ALPHA_WALL;
+	  }
+	}
+	else{
+	  for(j=0;j<HIEGHT;j++){
+	    if(field[j][st[i].x] == ALPHA_WALL)
+	      field[j][st[i].x] = EMPTY;
+	  }
+	}
+	break;
+      case BETA:
+	if(st[i].health > 0){
+	  for(j=0;j<HIEGHT;j++){
+	    if(field[j][st[i].x] == EMPTY || field[j][st[i].x] == BETA_WALL)
+	      field[j][st[i].x] = BETA_WALL;
+	  }
+	}
+	else{
+	  for(j=0;j<HIEGHT;j++){
+	    if(field[j][st[i].x] == BETA_WALL)
+	      field[j][st[i].x] = EMPTY;
+	  }
+	}
+	break;
+      }
+  }
 
 }
 
