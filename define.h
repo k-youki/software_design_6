@@ -59,5 +59,5 @@ typedef struct {
 //extern void init_curses(void);
 
 extern void field_disp(int field[][WIDTH], int player);
-
 extern void message(player p[], int i, int dice_num);
+extern void winner(int win);

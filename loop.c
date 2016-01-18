@@ -75,7 +75,8 @@ void game()
       }
     }
   }
-
+  winner(flag);
+  
 }
 
 void p_init(player p[])
