@@ -100,7 +100,7 @@ void p_init(player p[])
     p[i].pow_up = EMPTY;
     p[i].pow_down = EMPTY;
     p[i].dice_num = 0;
-    p[i].helth = DEFHP;
+    p[i].health = DEFHP;
     if(MAX/2 > i){
       p[i].team = ALPHA;
     }
@@ -120,7 +120,7 @@ void t_init(main_tower mt[], sub_tower st[])
   mt[1].x = WIDTH - 1;
   mt[0].y = mt[1].y = HIEGHT / 2;
   //HP and Team
-  mt[0].helth = mt[1].helth = M_HELTH;
+  mt[0].health = mt[1].health = M_HEALTH;
   mt[0].team = ALPHA;
   mt[1].team = BETA;
 
@@ -133,7 +133,7 @@ void t_init(main_tower mt[], sub_tower st[])
       st[i].x = (WIDTH / (S_TOWER_NUM + 1))*(i + 1) + 1;
     }
     st[i].y = HIEGHT / 2;
-    st[i].helth = S_HELTH;
+    st[i].health = S_HEALTH;
     if (i < S_TOWER_NUM / 2) {
       st[i].team = ALPHA;
     }
@@ -238,7 +238,7 @@ int attack(player p[], int field[][WIDTH], int player, int key)
 
 int win_loss_judgement(main_tower mt[])
 {
-  // return Win team(ALPHA or BETA)
+  if(mt[1].health
   
 
 }
