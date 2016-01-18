@@ -13,14 +13,14 @@
 #define DOUBLE 1
 #define DEFHP 40
 //Team
-#define ALPHA 0
-#define BETA 1
+#define ALPHA 3
+#define BETA 2
 //Tower Num
 #define M_TOWER_NUM 2
 #define S_TOWER_NUM 4
 //Tower State
-#define M_HELTH 20
-#define S_HELTH 10
+#define M_HEALTH 20
+#define S_HEALTH 10
 //Player Action
 #define UP 6
 #define DOWN 2
@@ -35,26 +35,26 @@ typedef struct {
 	int pow_up;
 	int pow_down;
 	int dice_num;
-	int helth;
+	int health;
         int team;
 } player;
 
 typedef struct {
 	int x;
 	int y;
-	int helth;
+	int health;
 	int team;
 } main_tower;
 
 typedef struct {
 	int x;
 	int y;
-	int helth;
+	int health;
 	int team;
 } sub_tower;
 
 //extern void init_curses(void);
 
 extern void field_disp(int field[][WIDTH], int player);
-
 extern void message(player p[], int i, int dice_num);
+extern void winner(int win);

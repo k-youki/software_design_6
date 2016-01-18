@@ -10,10 +10,17 @@ void p_init(player p[]);
 void t_init(main_tower mt[], sub_tower st[]);
 void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_tower st[]);
 void field_disp(int field[][WIDTH], int player);
+<<<<<<< HEAD
 player dice(player p);
 void dise_num_disp(player p);
 int walk(player p[], int field[][WIDTH], int player, int key);
+=======
+void dice(player p[],int entry);
+int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
+int tower_wall();
+>>>>>>> 1e132152ccc8af5458aa40e02281c6a1e9e8a519
 int attack(player p[], int field[][WIDTH], int player, int key);
+int win_loss_judgement(main_tower mt[]);
 
 int main(void)
 {
@@ -48,7 +55,12 @@ void game()
 
   system("clear");
 
+<<<<<<< HEAD
   while (flag != TRUE) {
+=======
+  while (flag == FALSE) {
+    dice(p, entry);
+>>>>>>> 1e132152ccc8af5458aa40e02281c6a1e9e8a519
     for (i = 0; i < entry; i++) {
       p[i] = dice(p[i]);
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
@@ -59,14 +71,23 @@ void game()
 	  scanf("%d", &key);
 	  if (key == ATTACK)
 	    flag_action = attack(p, field, i, key);
+
+	  /*test command*/
+	  else if(key == 7) mt[0].health -= 30;
+	  else if(key == 9) mt[1].health -= 30;
+	  /*end*/
+	  
 	  else
-	    flag_action = walk(p, field, i, key);
+	    flag_action = walk(p, field, i, key, st);
+	  printf("base1=%d,base2=%d\n",mt[0].health,mt[1].health);
 	}
+	flag = win_loss_judgement(mt);
 	system("clear");
       }
     }
   }
-
+  winner(flag);
+  
 }
 
 void p_init(player p[])
@@ -99,7 +120,7 @@ void p_init(player p[])
     p[i].pow_up = EMPTY;
     p[i].pow_down = EMPTY;
     p[i].dice_num = 0;
-    p[i].helth = DEFHP;
+    p[i].health = DEFHP;
     if(MAX/2 > i){
       p[i].team = ALPHA;
     }
@@ -119,7 +140,7 @@ void t_init(main_tower mt[], sub_tower st[])
   mt[1].x = WIDTH - 1;
   mt[0].y = mt[1].y = HIEGHT / 2;
   //HP and Team
-  mt[0].helth = mt[1].helth = M_HELTH;
+  mt[0].health = mt[1].health = M_HEALTH;
   mt[0].team = ALPHA;
   mt[1].team = BETA;
 
@@ -132,7 +153,7 @@ void t_init(main_tower mt[], sub_tower st[])
       st[i].x = (WIDTH / (S_TOWER_NUM + 1))*(i + 1) + 1;
     }
     st[i].y = HIEGHT / 2;
-    st[i].helth = S_HELTH;
+    st[i].health = S_HEALTH;
     if (i < S_TOWER_NUM / 2) {
       st[i].team = ALPHA;
     }
@@ -231,7 +252,7 @@ void dise_num_disp(player p)
   }
 }
 
-int walk(player p[], int field[][WIDTH], int player, int key)
+int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
 {
   int error = TRUE;
   int x, y;
@@ -280,7 +301,23 @@ int walk(player p[], int field[][WIDTH], int player, int key)
   }
 }
 
+int tower_wall()
+{
+
+
+}
+
 int attack(player p[], int field[][WIDTH], int player, int key)
 {
   printf("Attack!!\n");
+}
+
+int win_loss_judgement(main_tower mt[])
+{
+  if(mt[0].health <= 0)
+    return BETA;
+  else if(mt[1].health <= 0)
+    return ALPHA;
+  else
+    return FALSE;
 }

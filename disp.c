@@ -8,13 +8,20 @@
   start_color();
   assume_default_colors(COLOR_BLACK,COLOR_WHITE);
   init_pair(2,COLOR_RED,COLOR_BLACK);
+<<<<<<< HEAD
+=======
+  init_pair(3,COLOR_GREEN,COLOR_WHITE);
+  init_pair(4,COLOR_BLUE,COLOR_WHITE);
+>>>>>>> 1e132152ccc8af5458aa40e02281c6a1e9e8a519
   }
 */
 
 void message(player p[],int i,int dice_num)
 {
   printf("Player %d Turn\n", i+1);
-  printf("Your helth is %d\n",p[i].helth);
+  if(i<2) printf("Your team is ''ALPHA''\n");
+  else    printf("Your team is ''BETA''\n");
+  printf("Your helth is %d\n",p[i].health);
   printf("Your remaining num : %d\n",dice_num);
   /*
     printw("Player %d Turn\n", i+1);
@@ -100,6 +107,7 @@ void field_disp(int field[][WIDTH], int player)
 	    }
 	    break;
 	  case M_TOWER :
+<<<<<<< HEAD
 	    printf("\e[0mT ");
 	    /*
 	      attrset(0);
@@ -113,6 +121,21 @@ void field_disp(int field[][WIDTH], int player)
 	      printw("i ");
 	    */
 	    break;
+=======
+	    printf("\e[32mT ");
+	    /*
+	      attrset(COLOR_PAIR(3));
+	      printw("T ");
+	    */
+	    break;
+	  case S_TOWER :
+	    printf("\e[34mi ");
+	    /*
+	      attrset(COLOR_PAIR(4));
+	      printw("i ");
+	    */
+	    break;
+>>>>>>> 1e132152ccc8af5458aa40e02281c6a1e9e8a519
 	  default:
 	    break;
 	  }
@@ -123,3 +146,13 @@ void field_disp(int field[][WIDTH], int player)
   }
 }
 
+<<<<<<< HEAD
+=======
+void winner(int win)
+{
+  if(win == ALPHA)
+    printf("ALPHA team Win\n");
+  else if(win == BETA)
+    printf("BETA team Win\n");
+}
+>>>>>>> 1e132152ccc8af5458aa40e02281c6a1e9e8a519
