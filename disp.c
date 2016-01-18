@@ -126,3 +126,11 @@ void field_disp(int field[][WIDTH], int player)
     //printw("\n");
   }
 }
+
+void winner(int win)
+{
+  if(win == ALPHA)
+    printf("ALPHA team Win\n");
+  else if(win == BETA)
+    printf("BETA team Win\n");
+}
