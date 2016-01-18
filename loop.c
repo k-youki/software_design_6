@@ -11,7 +11,7 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
 void field_disp(int field[][WIDTH], int player);
 void dice(player p[],int entry);
 int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
-int tower_wall();
+int tower_wall(int field[][WIDTH]);
 int attack(player p[], int field[][WIDTH], int player, int key);
 int win_loss_judgement(main_tower mt[]);
 
@@ -62,6 +62,7 @@ void game()
 	  else
 	    flag_action = walk(p, field, i, key, st);
 	}
+	//tower_wall(field);
 	//flag = win_loss_judgment(mt);
 	system("clear");
       }
@@ -225,9 +226,24 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
   }
 }
 
-int tower_wall()
+int tower_wall(int field[][WIDTH], sub_tower st[])
 {
+  int i,j;
+  
+  for(i=0;i<S_TOWER_NUM;i++){
+    switch(st.team[i])
+      {
+      case ALPHA:
+	if(st.health[i] > 0){
+	  for(j=0;j<HIEGHT;j++){
+	    field[j][st.x[i]] = ALPHA_WALL;
+	}
+	break;
+      case BETA:
 
+	break;
+      }
+  }
 
 }
 
