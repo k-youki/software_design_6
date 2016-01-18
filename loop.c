@@ -59,10 +59,17 @@ void game()
 	  scanf("%d", &key);
 	  if (key == ATTACK)
 	    flag_action = attack(p, field, i, key);
+
+	  /*test command*/
+	  else if(key == 7) mt[0].health -= 30;
+	  else if(key == 9) mt[1].health -= 30;
+	  /*end*/
+	  
 	  else
 	    flag_action = walk(p, field, i, key, st);
+	  printf("base1=%d,base2=%d\n",mt[0].health,mt[1].health);
 	}
-	//flag = win_loss_judgment(mt);
+	flag = win_loss_judgement(mt);
 	system("clear");
       }
     }
@@ -238,7 +245,10 @@ int attack(player p[], int field[][WIDTH], int player, int key)
 
 int win_loss_judgement(main_tower mt[])
 {
-  if(mt[1].health
-  
-
+  if(mt[0].health <= 0)
+    return BETA;
+  else if(mt[1].health <= 0)
+    return ALPHA;
+  else
+    return FALSE;
 }

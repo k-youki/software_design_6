@@ -13,8 +13,8 @@
 #define DOUBLE 1
 #define DEFHP 40
 //Team
-#define ALPHA 0
-#define BETA 1
+#define ALPHA 3
+#define BETA 2
 //Tower Num
 #define M_TOWER_NUM 2
 #define S_TOWER_NUM 4
