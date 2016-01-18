@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include <math.h>
 #include "define.h"
@@ -9,7 +10,8 @@ void p_init(player p[]);
 void t_init(main_tower mt[], sub_tower st[]);
 void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_tower st[]);
 void field_disp(int field[][WIDTH], int player);
-void dice(player p[],int entry);
+player dice(player p);
+void dise_num_disp(player p);
 int walk(player p[], int field[][WIDTH], int player, int key);
 int attack(player p[], int field[][WIDTH], int player, int key);
 
@@ -47,8 +49,8 @@ void game()
   system("clear");
 
   while (flag != TRUE) {
-    dice(p, entry);
     for (i = 0; i < entry; i++) {
+      p[i] = dice(p[i]);
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
 	flag_action = FALSE;
 	message(p, i, dice_num);
@@ -164,12 +166,68 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
   
 }
 
-void dice(player p[], int entry)
+player dice(player p)
 {
-  int i;
+  char c;
+  
+  system("clear");
+  printf("dice roll ?\n");
 
-  for (i = 0; i < entry; i++) {
-    p[i].dice_num = rand() % 6 + 1;
+  scanf("%c",&c);
+  getchar();
+  
+  p.dice_num = rand() % 6 + 1;
+  printf("dice_num : %d\n",p.dice_num);
+  dise_num_disp(p);
+  sleep(3);
+  system("clear");
+    
+  return p;
+}
+
+void dise_num_disp(player p)
+{
+  if(p.dice_num == 1){
+    printf("                          /|\n");
+    printf("                           |\n");
+    printf("                           |\n");
+    printf("                          _|_\n");
+  }
+  else if(p.dice_num == 2){
+    printf("                          ____\n");
+    printf("                         |    |\n");
+    printf("                          ____|\n");
+    printf("                         |\n");
+    printf("                         |____\n");
+  }
+  else if(p.dice_num == 3){
+    printf("                         _____\n");
+    printf("                              |\n");
+    printf("                         _____|\n");
+    printf("                              |\n");
+    printf("                         _____|\n");
+  }
+  else if(p.dice_num == 4){
+    printf("                           /|\n");
+    printf("                          / |\n");
+    printf("                         /  |\n");
+    printf("                        /___|__\n");
+    printf("                            |\n");
+    printf("                            |\n");
+  }
+  else if(p.dice_num == 5){
+    printf("                          _____\n");
+    printf("                         |     \n");
+    printf("                         |_____\n");
+    printf("                               |\n");
+    printf("                          _____|\n");
+  }
+  else if(p.dice_num == 6){
+    printf("                          _____\n");
+    printf("                         |\n");
+    printf("                         |_____\n");
+    printf("                         |     |\n");
+    printf("                         |_____|\n");
   }
 }
 
