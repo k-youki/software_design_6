@@ -11,7 +11,7 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
 void field_disp(int field[][WIDTH], int player);
 void dice(player p[],int entry);
 int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
-int tower_wall(int field[][WIDTH]);
+int tower_wall(int field[][WIDTH], sub_tower st[]);
 int attack(player p[], int field[][WIDTH], int player, int key);
 int win_loss_judgement(main_tower mt[]);
 
@@ -59,11 +59,18 @@ void game()
 	  scanf("%d", &key);
 	  if (key == ATTACK)
 	    flag_action = attack(p, field, i, key);
+
+	  /*test command*/
+	  else if(key == 7) mt[0].health -= 30;
+	  else if(key == 9) mt[1].health -= 30;
+	  /*end*/
+	  
 	  else
 	    flag_action = walk(p, field, i, key, st);
+	  printf("base1=%d,base2=%d\n",mt[0].health,mt[1].health);
 	}
 	//tower_wall(field);
-	//flag = win_loss_judgment(mt);
+	flag = win_loss_judgement(mt);
 	system("clear");
       }
     }
@@ -101,7 +108,7 @@ void p_init(player p[])
     p[i].pow_up = EMPTY;
     p[i].pow_down = EMPTY;
     p[i].dice_num = 0;
-    p[i].helth = DEFHP;
+    p[i].health = DEFHP;
     if(MAX/2 > i){
       p[i].team = ALPHA;
     }
@@ -121,7 +128,7 @@ void t_init(main_tower mt[], sub_tower st[])
   mt[1].x = WIDTH - 1;
   mt[0].y = mt[1].y = HIEGHT / 2;
   //HP and Team
-  mt[0].helth = mt[1].helth = M_HELTH;
+  mt[0].health = mt[1].health = M_HEALTH;
   mt[0].team = ALPHA;
   mt[1].team = BETA;
 
@@ -134,7 +141,7 @@ void t_init(main_tower mt[], sub_tower st[])
       st[i].x = (WIDTH / (S_TOWER_NUM + 1))*(i + 1) + 1;
     }
     st[i].y = HIEGHT / 2;
-    st[i].helth = S_HELTH;
+    st[i].health = S_HEALTH;
     if (i < S_TOWER_NUM / 2) {
       st[i].team = ALPHA;
     }
@@ -231,16 +238,35 @@ int tower_wall(int field[][WIDTH], sub_tower st[])
   int i,j;
   
   for(i=0;i<S_TOWER_NUM;i++){
-    switch(st.team[i])
+    switch(st[i].team)
       {
       case ALPHA:
-	if(st.health[i] > 0){
+	if(st[i].health > 0){
 	  for(j=0;j<HIEGHT;j++){
-	    field[j][st.x[i]] = ALPHA_WALL;
+	    if(field[j][st[i].x] == EMPTY || field[j][st[i].x] == ALPHA_WALL)
+	      field[j][st[i].x] = ALPHA_WALL;
+	  }
+	}
+	else{
+	  for(j=0;j<HIEGHT;j++){
+	    if(field[j][st[i].x] == ALPHA_WALL)
+	      field[j][st[i].x] = EMPTY;
+	  }
 	}
 	break;
       case BETA:
-
+	if(st[i].health > 0){
+	  for(j=0;j<HIEGHT;j++){
+	    if(field[j][st[i].x] == EMPTY || field[j][st[i].x] == BETA_WALL)
+	      field[j][st[i].x] = BETA_WALL;
+	  }
+	}
+	else{
+	  for(j=0;j<HIEGHT;j++){
+	    if(field[j][st[i].x] == BETA_WALL)
+	      field[j][st[i].x] = EMPTY;
+	  }
+	}
 	break;
       }
   }
@@ -254,7 +280,10 @@ int attack(player p[], int field[][WIDTH], int player, int key)
 
 int win_loss_judgement(main_tower mt[])
 {
-  // return Win team(ALPHA or BETA)
-  
-
+  if(mt[0].health <= 0)
+    return BETA;
+  else if(mt[1].health <= 0)
+    return ALPHA;
+  else
+    return FALSE;
 }
