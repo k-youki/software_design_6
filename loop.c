@@ -10,11 +10,11 @@ void p_init(player p[]);
 void t_init(main_tower mt[], sub_tower st[]);
 void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_tower st[]);
 void field_disp(int field[][WIDTH], int player);
+int attack(player p[], int field[][WIDTH], main_tower mt[], sub_tower st[], int player);
 player dice(player p);
 void dise_num_disp(player p);
 int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
 int tower_wall(int field[][WIDTH], sub_tower st[]);
-int attack(player p[], int field[][WIDTH], int player, int key);
 int win_loss_judgement(main_tower mt[]);
 
 int main(void)
@@ -60,7 +60,8 @@ void game()
 	while (flag_action != TRUE) {
 	  scanf("%d", &key);
 	  if (key == ATTACK)
-	    flag_action = attack(p, field, i, key);
+
+	    flag_action = attack(p, field, mt, st, i);
 
 	  /*test command*/
 	  else if(key == 7) mt[0].health -= 30;
@@ -332,9 +333,56 @@ int tower_wall(int field[][WIDTH], sub_tower st[])
 
 }
 
-int attack(player p[], int field[][WIDTH], int player, int key)
+int attack(player p[],int field[][WIDTH], main_tower mt[], sub_tower st[], int player)
 {
-  printf("Attack!!\n");
+  int i, x, y;
+  x = p[player].x;
+  y = p[player].y;
+
+  //main tower attack
+  if(player / 2 != 0) {
+    if(x <= mt[0].x + 1 && (mt[0].y - 1 <= y && y <= mt[0].y + 1)) {
+      printf("Attack!!\n");
+      mt[0].health--;
+      return TRUE;
+    }
+  }
+  else {
+    if(x >= mt[1].x - 1 && (mt[1].y - 1 <= y && y <= mt[1].y + 1)) {
+      printf("Attack!!!\n");
+      mt[1].health--;
+      return TRUE;
+    }
+  }
+  
+  //sub tower attack
+  if(player / 2 != 0) {
+    if(x == st[1].x + 1 && (st[1].y - 1 <= y && y <= st[1].y + 1)) {
+      printf("st1 Attack!!\n");
+      st[1].health--;
+      return TRUE;
+    }
+    else if(x == st[0].x + 1 && (st[0].y - 1 <= y && y <= st[0].y + 1)) {
+      printf("st0 Attack!!\n");
+      st[0].health--;
+      return TRUE;
+    }
+  }
+  else {
+    if(x == st[3].x - 1 && (st[3].y - 1 <= y && y <= st[3].y + 1)) {
+      printf("st3 Attack!!\n");
+      st[3].health--;
+      return TRUE;
+    }
+    else if(x == st[2].x - 1 && (st[2].y - 1 <= y && y <= st[2].y + 1)) {
+      printf("st2 Attack!!!\n");
+      st[2].health--;
+      return TRUE;
+    }
+
+  }
+  
+  return FALSE; //action NO
 }
 
 int win_loss_judgement(main_tower mt[])
