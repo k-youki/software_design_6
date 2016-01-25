@@ -186,7 +186,7 @@ player dice(player p)
   scanf("%c",&c);
   getchar();
 
-  p.dice_num = 10;//rand() % 6 + 1;
+  p.dice_num = rand() % 6 + 1;
   printf("dice_num : %d\n",p.dice_num);
   dise_num_disp(p);
   sleep(1);
