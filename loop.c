@@ -55,7 +55,7 @@ void game()
       p[i] = dice(p[i]);
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
 	flag_action = FALSE;
-	message(p, i, dice_num);
+	message(p, i, dice_num, mt, st);
 	field_disp(field, i);
 	while (flag_action != TRUE) {
 	  scanf("%d", &key);
@@ -185,8 +185,8 @@ player dice(player p)
 
   scanf("%c",&c);
   getchar();
-  
-  p.dice_num = rand() % 6 + 1;
+
+  p.dice_num = 10;//rand() % 6 + 1;
   printf("dice_num : %d\n",p.dice_num);
   dise_num_disp(p);
   sleep(1);
@@ -273,7 +273,19 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
     }
     
   //Move Error
-  if (field[y][x] != EMPTY) {
+  if (field[y][x] == ALPHA_WALL || field[y][x] == BETA_WALL){
+    switch(p[player].team){
+    case ALPHA:
+      if(field[y][x] == BETA_WALL)
+	error = TRUE;
+      break;
+    case BETA:
+      if(field[y][x] == ALPHA_WALL)
+	error = TRUE;
+      break;
+    }
+  }
+  else if (field[y][x] != EMPTY) {
     error = TRUE;
   }
 
