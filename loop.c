@@ -55,7 +55,7 @@ void game()
       p[i] = dice(p[i]);
       for (dice_num = p[i].dice_num; dice_num > 0; dice_num--) {
 	flag_action = FALSE;
-	message(p, i, dice_num);
+	message(p, i, dice_num, mt, st);
 	field_disp(field, i);
 	while (flag_action != TRUE) {
 	  scanf("%d", &key);
