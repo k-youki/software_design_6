@@ -119,10 +119,10 @@ void field_disp(int field[][WIDTH], int player)
 	    */
 	    break;
 	  case ALPHA_WALL :
-	    printf("A ");
+	    printf("\e[34mA ");
 	    break;
 	  case BETA_WALL :
-	    printf("B ");
+	    printf("\e[34mB ");
 	    break;
 	  default:
 	    break;
