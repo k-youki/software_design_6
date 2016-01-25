@@ -14,6 +14,7 @@ int attack(player p[], int field[][WIDTH], main_tower mt[], sub_tower st[], int 
 player dice(player p);
 void dise_num_disp(player p);
 int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
+void check_player_dead(player p[], int field[][WIDTH]);
 int tower_wall(int field[][WIDTH], sub_tower st[]);
 int win_loss_judgement(main_tower mt[]);
 
@@ -69,6 +70,7 @@ void game()
 	    flag_action = walk(p, field, i, key, st);
 	  printf("base1=%d,base2=%d\n",mt[0].health,mt[1].health);
 	}
+	check_player_dead(p, field);
 	tower_wall(field,st);
 	flag = win_loss_judgement(mt);
 	system("clear");
@@ -299,6 +301,32 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
     p[player].y = y;
     field[y][x] = p[player].num;
     return TRUE;//action OK
+  }
+}
+
+void check_player_dead(player p[], int field[][WIDTH])
+{
+  int i;
+
+  for(i=0;i<MAX;i++){
+    if(p[i].health <= 0){
+      p[i].health=DEFHP;
+      field[p[i].y][p[i].x] = EMPTY;
+      if(p[i].team == ALPHA){
+	p[i].x = 0;
+	p[i].y = 0;
+      }
+      else{
+	p[i].x = WIDTH - 1;
+	p[i].y = 0;
+      }
+      if(field[p[i].y][p[i].x] == EMPTY)
+	field[p[i].y][p[i].x] = p[i].num;
+      else{
+	p[i].y++;
+	field[p[i].y][p[i].x] = p[i].num;
+      }
+    }
   }
 }
 
