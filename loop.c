@@ -16,6 +16,8 @@ void dise_num_disp(player p);
 int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
 int tower_wall(int field[][WIDTH], sub_tower st[]);
 int win_loss_judgement(main_tower mt[]);
+void mine_installation(int field[][WIDTH]);
+int range_check(int x, int y);
 
 int main(void)
 {
@@ -173,8 +175,59 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
   for (i = 0; i < S_TOWER_NUM; i++) {
     field[st[i].y][st[i].x] = S_TOWER;
   }
+
+  //field_disp(field, -1);
+  printf("\n");
+  // Mine set
+  mine_installation(field);
   
 }
+
+void mine_installation(int field[][WIDTH])
+{
+  int i,j;
+  int x,y;
+
+  for(i = 0; i < 2; i++){
+    printf("\n");
+    if(i == 0)
+      printf("ALPHA : Please set Mine\n");
+    else if(i == 1)
+      printf("BETA : Please set Mine\n");
+    printf("NUM : %d\n",MINE_NUM);
+    j = 0;
+    while(j < MINE_NUM){
+      printf("x[%d] = ",j+1);
+      scanf("%d",&x);
+      printf("y[%d] = ",j+1);
+      scanf("%d",&y);
+      printf("\n");
+      if(i == 0){
+	if(field[y][x] == EMPTY && range_check(x, y) == 1){
+	  field[y][x] = ALPHA_MINE;
+	  j++;
+	}
+      }
+      else if(i == 1 && range_check(x, y) == 1){
+	if(field[y][x] == EMPTY){
+	  field[y][x] = BETA_MINE;
+	  j++;
+	}
+      }
+    }
+  }   
+
+}
+
+int range_check(int x, int y)
+{
+  if(x >= 0 && x < WIDTH)
+    if(y >= 0 && y < HIEGHT)
+      return 1;
+  
+  return 0;
+}
+  
 
 player dice(player p)
 {
