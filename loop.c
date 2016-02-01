@@ -307,20 +307,25 @@ void check_player_dead(player p[], int field[][WIDTH])
     if(p[i].health <= 0){
       p[i].health=DEFHP;
       field[p[i].y][p[i].x] = EMPTY;
-      if(p[i].team == ALPHA){
+      switch (i) {
+      case 0 :
 	p[i].x = 0;
-	p[i].y = 0;
-      }
-      else{
+	p[i].y = 1;
+	break;
+      case 1 :
+	p[i].x = 0;
+	p[i].y = 3;
+	break;
+      case 2:
 	p[i].x = WIDTH - 1;
-	p[i].y = 0;
+	p[i].y = 1;
+	break;
+      case 3:
+	p[i].x = WIDTH - 1;
+	p[i].y = 3;
+	break;
       }
-      if(field[p[i].y][p[i].x] == EMPTY)
-	field[p[i].y][p[i].x] = p[i].num;
-      else{
-	p[i].y++;
-	field[p[i].y][p[i].x] = p[i].num;
-      }
+      field[p[i].y][p[i].x] = p[i].num;
     }
   }
 }
