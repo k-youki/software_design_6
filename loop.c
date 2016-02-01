@@ -17,15 +17,9 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
 void check_player_dead(player p[], int field[][WIDTH]);
 int tower_wall(int field[][WIDTH], sub_tower st[]);
 int win_loss_judgement(main_tower mt[]);
-void mine_judgement(player p[], int field[][WIDTH], int player);
+void mine_judgement(player p[], int field[][WIDTH], int player,int x,int y);
 void mine_installation(int field[][WIDTH]);
 int range_check(int x, int y);
-<<<<<<< HEAD
-=======
-void mine_installation(int field[][WIDTH]);
-int range_check(int x, int y);
-void mine_judgement();
->>>>>>> 9c91bda15dc079425f4267234eb4550ac10ec0e8
 
 int main(void)
 {
@@ -181,13 +175,9 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
   for (i = 0; i < S_TOWER_NUM; i++) {
     field[st[i].y][st[i].x] = S_TOWER;
   }
-<<<<<<< HEAD
-
+  
   tower_wall(field,st);
 
-=======
-  tower_wall(field,st);
->>>>>>> 9c91bda15dc079425f4267234eb4550ac10ec0e8
   field_disp(field, -1);
   printf("\n");
   //Mine set
@@ -236,10 +226,7 @@ int range_check(int x, int y)
   if(x >= 0 && x < WIDTH)
     if(y >= 0 && y < HEIGHT)
       return 1;
-<<<<<<< HEAD
 
-=======
->>>>>>> 9c91bda15dc079425f4267234eb4550ac10ec0e8
   return 0;
 }
   
@@ -354,11 +341,8 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
       break;
     }
   }
-  else if(field[y][x] == ALPHA_MINE){
-
-  }
-  else if(field[y][x] == BETA_MINE){
-
+  else if(field[y][x] == ALPHA_MINE || field[y][x] == BETA_MINE){
+    mine_judgement(p, field, player, x, y);
   }
   else if (field[y][x] != EMPTY) {
     error = TRUE;
@@ -511,18 +495,18 @@ int win_loss_judgement(main_tower mt[])
     return FALSE;
 }
 
-void mine_judgement(player p[], int field[][WIDTH], int player)
+void mine_judgement(player p[], int field[][WIDTH], int player,int x,int y)
 {
-  /* switch (p[player].team){
+  switch (p[player].team){
   case ALPHA:
-    if(field[p[player].y][p[player].x] == BETA_MINE){
+    if(field[y][x] == BETA_MINE){
       p[player].health = 0;
     }
     break;
   case BETA:
-    if(field[p[player].y][p[player].x] == ALPHA_MINE){
+    if(field[y][x] == ALPHA_MINE){
       p[player].health = 0;
     }
     break;
-    }*/
+    }
 }
