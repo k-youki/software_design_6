@@ -17,9 +17,15 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
 void check_player_dead(player p[], int field[][WIDTH]);
 int tower_wall(int field[][WIDTH], sub_tower st[]);
 int win_loss_judgement(main_tower mt[]);
+<<<<<<< HEAD
 void mine_judgement(player p[], int field[][WIDTH], int player);
 void mine_installation(int field[][WIDTH]);
 int range_check(int x, int y);
+=======
+void mine_installation(int field[][WIDTH]);
+int range_check(int x, int y);
+void mine_judgement();
+>>>>>>> f8b20bf58e3b31823a0ba0c7c907dae5b9026f19
 
 int main(void)
 {
@@ -64,15 +70,17 @@ void game()
 	while (flag_action != TRUE) {
 	  scanf("%d", &key);
 	  if (key == ATTACK)
-	    flag_action = attack(p, field, mt, st, i);	  
+	    flag_action = attack(p, field, mt, st, i);
 	  else
 	    flag_action = walk(p, field, i, key, st);
+	  flag = win_loss_judgement(mt);
+	  if(flag != FALSE) break;
 	}
 	check_player_dead(p, field);
 	tower_wall(field,st);
-	flag = win_loss_judgement(mt);
 	system("clear");
       }
+      if(flag != FALSE) break;
     }
   }
   winner(flag);
@@ -174,8 +182,11 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
     field[st[i].y][st[i].x] = S_TOWER;
   }
 
+<<<<<<< HEAD
   tower_wall(field,st);
   
+=======
+>>>>>>> f8b20bf58e3b31823a0ba0c7c907dae5b9026f19
   field_disp(field, -1);
   printf("\n");
   //Mine set
@@ -224,7 +235,11 @@ int range_check(int x, int y)
   if(x >= 0 && x < WIDTH)
     if(y >= 0 && y < HEIGHT)
       return 1;
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> f8b20bf58e3b31823a0ba0c7c907dae5b9026f19
   return 0;
 }
   
