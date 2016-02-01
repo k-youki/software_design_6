@@ -31,7 +31,7 @@ void game()
 {
   int i;
   int key;
-  int field[HIEGHT][WIDTH];
+  int field[HEIGHT][WIDTH];
   int entry;
   int flag = FALSE;
   int flag_action = FALSE;
@@ -124,7 +124,7 @@ void t_init(main_tower mt[], sub_tower st[])
   //main tower position
   mt[0].x = 0;
   mt[1].x = WIDTH - 1;
-  mt[0].y = mt[1].y = HIEGHT / 2;
+  mt[0].y = mt[1].y = HEIGHT / 2;
   //HP and Team
   mt[0].health = mt[1].health = M_HEALTH;
   mt[0].team = ALPHA;
@@ -138,7 +138,7 @@ void t_init(main_tower mt[], sub_tower st[])
     else {
       st[i].x = (WIDTH / (S_TOWER_NUM + 1))*(i + 1) + 1;
     }
-    st[i].y = HIEGHT / 2;
+    st[i].y = HEIGHT / 2;
     st[i].health = S_HEALTH;
     if (i < S_TOWER_NUM / 2) {
       st[i].team = ALPHA;
@@ -153,7 +153,7 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
 {
   int i, j;
 
-  for (i = 0; i < HIEGHT; i++) {
+  for (i = 0; i < HEIGHT; i++) {
     for (j = 0; j < WIDTH; j++) {
       field[i][j] = EMPTY;
     }
@@ -255,7 +255,7 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
       break;
     case DOWN://Down move
       y++;
-      if (y < HIEGHT) { error = FALSE; }
+      if (y < HEIGHT) { error = FALSE; }
       break;
     case LEFT://Left move
       x--;
@@ -334,13 +334,13 @@ int tower_wall(int field[][WIDTH], sub_tower st[])
       {
       case ALPHA:
 	if(st[i].health > 0){
-	  for(j=0;j<HIEGHT;j++){
+	  for(j=0;j<HEIGHT;j++){
 	    if(field[j][st[i].x] == EMPTY || field[j][st[i].x] == ALPHA_WALL)
 	      field[j][st[i].x] = ALPHA_WALL;
 	  }
 	}
 	else{
-	  for(j=0;j<HIEGHT;j++){
+	  for(j=0;j<HEIGHT;j++){
 	    if(field[j][st[i].x] == ALPHA_WALL)
 	      field[j][st[i].x] = EMPTY;
 	  }
@@ -348,13 +348,13 @@ int tower_wall(int field[][WIDTH], sub_tower st[])
 	break;
       case BETA:
 	if(st[i].health > 0){
-	  for(j=0;j<HIEGHT;j++){
+	  for(j=0;j<HEIGHT;j++){
 	    if(field[j][st[i].x] == EMPTY || field[j][st[i].x] == BETA_WALL)
 	      field[j][st[i].x] = BETA_WALL;
 	  }
 	}
 	else{
-	  for(j=0;j<HIEGHT;j++){
+	  for(j=0;j<HEIGHT;j++){
 	    if(field[j][st[i].x] == BETA_WALL)
 	      field[j][st[i].x] = EMPTY;
 	  }

@@ -40,7 +40,7 @@ void field_disp(int field[][WIDTH], int player)
 {
   int i, j;
 
-  for (i = 0; i < HIEGHT; i++) {
+  for (i = 0; i < HEIGHT; i++) {
     for (j = 0; j < WIDTH; j++) {
       switch (field[i][j])
 	{

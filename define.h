@@ -2,7 +2,7 @@
 #define FALSE 0
 //Field size
 #define WIDTH 32
-#define HIEGHT 5
+#define HEIGHT 5
 //player num
 #define MAX 4
 //Field States
