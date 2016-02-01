@@ -17,7 +17,7 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
 void check_player_dead(player p[], int field[][WIDTH]);
 int tower_wall(int field[][WIDTH], sub_tower st[]);
 int win_loss_judgement(main_tower mt[]);
-void mine_judgement();
+void mine_judgement(player p[], int field[][WIDTH], int player);
 
 int main(void)
 {
@@ -436,7 +436,9 @@ int win_loss_judgement(main_tower mt[])
     return FALSE;
 }
 
-void mine_judgement()
+void mine_judgement(player p[], int field[][WIDTH], int player)
 {
-
+  switch (p[player].team){
+    //   if(field[p[player].y][p[player].x] == )
+  }
 }
