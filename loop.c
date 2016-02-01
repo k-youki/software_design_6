@@ -20,6 +20,12 @@ int win_loss_judgement(main_tower mt[]);
 void mine_judgement(player p[], int field[][WIDTH], int player);
 void mine_installation(int field[][WIDTH]);
 int range_check(int x, int y);
+<<<<<<< HEAD
+=======
+void mine_installation(int field[][WIDTH]);
+int range_check(int x, int y);
+void mine_judgement();
+>>>>>>> 9c91bda15dc079425f4267234eb4550ac10ec0e8
 
 int main(void)
 {
@@ -175,9 +181,13 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
   for (i = 0; i < S_TOWER_NUM; i++) {
     field[st[i].y][st[i].x] = S_TOWER;
   }
+<<<<<<< HEAD
 
   tower_wall(field,st);
 
+=======
+  tower_wall(field,st);
+>>>>>>> 9c91bda15dc079425f4267234eb4550ac10ec0e8
   field_disp(field, -1);
   printf("\n");
   //Mine set
@@ -226,7 +236,10 @@ int range_check(int x, int y)
   if(x >= 0 && x < WIDTH)
     if(y >= 0 && y < HEIGHT)
       return 1;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c91bda15dc079425f4267234eb4550ac10ec0e8
   return 0;
 }
   
