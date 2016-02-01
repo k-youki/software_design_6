@@ -17,6 +17,9 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
 void check_player_dead(player p[], int field[][WIDTH]);
 int tower_wall(int field[][WIDTH], sub_tower st[]);
 int win_loss_judgement(main_tower mt[]);
+void mine_judgement(player p[], int field[][WIDTH], int player);
+void mine_installation(int field[][WIDTH]);
+int range_check(int x, int y);
 void mine_installation(int field[][WIDTH]);
 int range_check(int x, int y);
 void mine_judgement();
@@ -176,9 +179,12 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
     field[st[i].y][st[i].x] = S_TOWER;
   }
 
+  tower_wall(field,st);
+
+  tower_wall(field,st);
   field_disp(field, -1);
   printf("\n");
-  // Mine set
+  //Mine set
   mine_installation(field);
   
 }
@@ -346,6 +352,12 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
       break;
     }
   }
+  else if(field[y][x] == ALPHA_MINE){
+
+  }
+  else if(field[y][x] == BETA_MINE){
+
+  }
   else if (field[y][x] != EMPTY) {
     error = TRUE;
   }
@@ -497,7 +509,18 @@ int win_loss_judgement(main_tower mt[])
     return FALSE;
 }
 
-void mine_judgement()
+void mine_judgement(player p[], int field[][WIDTH], int player)
 {
-
+  /* switch (p[player].team){
+  case ALPHA:
+    if(field[p[player].y][p[player].x] == BETA_MINE){
+      p[player].health = 0;
+    }
+    break;
+  case BETA:
+    if(field[p[player].y][p[player].x] == ALPHA_MINE){
+      p[player].health = 0;
+    }
+    break;
+    }*/
 }
