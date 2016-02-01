@@ -326,6 +326,14 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
     }
     
   //Move Error
+  if (p[player].team == ALPHA && x >= WIDTH-1) {
+    error = TRUE;
+    printf("Error\n");
+  }
+  if (p[player].team == BETA && x <= 0) {
+    error = TRUE;
+    printf("Error\n");
+  }
   if (field[y][x] == ALPHA_WALL || field[y][x] == BETA_WALL){
     switch(p[player].team){
     case ALPHA:
