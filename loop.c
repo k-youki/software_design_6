@@ -61,14 +61,9 @@ void game()
 	while (flag_action != TRUE) {
 	  scanf("%d", &key);
 	  if (key == ATTACK)
-	    flag_action = attack(p, field, mt, st, i);
-	  /*test command*/
-	  else if(key == 7) mt[0].health -= 30;
-	  else if(key == 9) mt[1].health -= 30;
-	  /*end*/	  
+	    flag_action = attack(p, field, mt, st, i);	  
 	  else
 	    flag_action = walk(p, field, i, key, st);
-	  printf("base1=%d,base2=%d\n",mt[0].health,mt[1].health);
 	}
 	check_player_dead(p, field);
 	tower_wall(field,st);
