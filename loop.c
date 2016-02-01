@@ -12,14 +12,12 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
 void field_disp(int field[][WIDTH], int player);
 int attack(player p[], int field[][WIDTH], main_tower mt[], sub_tower st[], int player);
 player dice(player p);
-void dise_num_disp(player p);
+void dice_num_disp(player p);
 int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
 void check_player_dead(player p[], int field[][WIDTH]);
 int tower_wall(int field[][WIDTH], sub_tower st[]);
 int win_loss_judgement(main_tower mt[]);
 void mine_judgement(player p[], int field[][WIDTH], int player);
-void mine_installation(int field[][WIDTH]);
-int range_check(int x, int y);
 void mine_installation(int field[][WIDTH]);
 int range_check(int x, int y);
 void mine_judgement();
@@ -255,7 +253,7 @@ player dice(player p)
   return p;
 }
 
-void dise_num_disp(player p)
+void dice_num_disp(player p)
 {
   if(p.dice_num == 1){
     printf("                          /|\n");
