@@ -182,6 +182,7 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
   tower_wall(field,st);
 
   tower_wall(field,st);
+  tower_wall(field,st);
   field_disp(field, -1);
   printf("\n");
   //Mine set
@@ -230,7 +231,7 @@ int range_check(int x, int y)
   if(x >= 0 && x < WIDTH)
     if(y >= 0 && y < HEIGHT)
       return 1;
-  
+
   return 0;
 }
   
