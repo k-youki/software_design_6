@@ -12,6 +12,8 @@
 #define S_TOWER -2
 #define ALPHA_WALL -3
 #define BETA_WALL -4
+#define ALPHA_MINE -5
+#define BETA_MINE -6
 //Player States
 #define DOUBLE 1
 #define DEFHP 40
@@ -30,6 +32,8 @@
 #define RIGHT 8
 #define LEFT 4
 #define ATTACK 5
+
+#define MINE_NUM 4
 
 typedef struct {
 	int num;
