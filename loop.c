@@ -12,7 +12,7 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
 void field_disp(int field[][WIDTH], int player);
 int attack(player p[], int field[][WIDTH], main_tower mt[], sub_tower st[], int player);
 player dice(player p);
-void dise_num_disp(player p);
+void dice_num_disp(player p);
 int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
 void check_player_dead(player p[], int field[][WIDTH]);
 int tower_wall(int field[][WIDTH], sub_tower st[]);
@@ -175,7 +175,7 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
   for (i = 0; i < S_TOWER_NUM; i++) {
     field[st[i].y][st[i].x] = S_TOWER;
   }
-  
+
   tower_wall(field,st);
 
   field_disp(field, -1);
@@ -243,14 +243,14 @@ player dice(player p)
 
   p.dice_num = rand() % 6 + 1;
   printf("dice_num : %d\n",p.dice_num);
-  dise_num_disp(p);
+  dice_num_disp(p);
   sleep(1);
   system("clear");
     
   return p;
 }
 
-void dise_num_disp(player p)
+void dice_num_disp(player p)
 {
   if(p.dice_num == 1){
     printf("                          /|\n");
@@ -328,7 +328,14 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
     }
     
   //Move Error
-  
+  if (p[player].team == ALPHA && x >= WIDTH-1) {
+    error = TRUE;
+    printf("Error\n");
+  }
+  if (p[player].team == BETA && x <= 0) {
+    error = TRUE;
+    printf("Error\n");
+  }
   if (field[y][x] == ALPHA_WALL || field[y][x] == BETA_WALL){
     switch(p[player].team){
     case ALPHA:

@@ -132,10 +132,10 @@ void field_disp(int field[][WIDTH], int player)
 	    printf("\e[34mB ");
 	    break;
 	  case ALPHA_MINE :
-	    printf("\e[0mX ");
+	    printf("\e[0mo ");
 	    break;
 	  case BETA_MINE :
-	    printf("\e[0mY ");
+	    printf("\e[0mo ");
 	    break;
 	  default:
 	    break;
