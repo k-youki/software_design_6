@@ -17,6 +17,7 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[]);
 void check_player_dead(player p[], int field[][WIDTH]);
 int tower_wall(int field[][WIDTH], sub_tower st[]);
 int win_loss_judgement(main_tower mt[]);
+void mine_judgement();
 
 int main(void)
 {
@@ -68,7 +69,6 @@ void game()
 	  /*end*/	  
 	  else
 	    flag_action = walk(p, field, i, key, st);
-	  printf("base1=%d,base2=%d\n",mt[0].health,mt[1].health);
 	}
 	check_player_dead(p, field);
 	tower_wall(field,st);
@@ -175,6 +175,8 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
   for (i = 0; i < S_TOWER_NUM; i++) {
     field[st[i].y][st[i].x] = S_TOWER;
   }
+
+  tower_wall(field,st);
   
 }
 
@@ -312,14 +314,33 @@ void check_player_dead(player p[], int field[][WIDTH])
     if(p[i].health <= 0){
       p[i].health=DEFHP;
       field[p[i].y][p[i].x] = EMPTY;
-      if(p[i].team == ALPHA){
+      /*      if(p[i].team == ALPHA){
 	p[i].x = 0;
 	p[i].y = 0;
       }
       else{
 	p[i].x = WIDTH - 1;
 	p[i].y = 0;
-      }
+	}*/
+      switch (i)
+	{
+	case 0 :
+	  p[i].x = 0;
+	  p[i].y = 1;
+	  break;
+	case 1 :
+	  p[i].x = 0;
+	  p[i].y = 3;
+	  break;
+	case 2:
+	  p[i].x = WIDTH - 1;
+	  p[i].y = 1;
+	  break;
+	case 3:
+	  p[i].x = WIDTH - 1;
+	  p[i].y = 3;
+	  break;
+	}
       if(field[p[i].y][p[i].x] == EMPTY)
 	field[p[i].y][p[i].x] = p[i].num;
       else{
@@ -430,4 +451,9 @@ int win_loss_judgement(main_tower mt[])
     return ALPHA;
   else
     return FALSE;
+}
+
+void mine_judgement()
+{
+
 }
