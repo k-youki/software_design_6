@@ -61,15 +61,17 @@ void game()
 	while (flag_action != TRUE) {
 	  scanf("%d", &key);
 	  if (key == ATTACK)
-	    flag_action = attack(p, field, mt, st, i);	  
+	    flag_action = attack(p, field, mt, st, i);
 	  else
 	    flag_action = walk(p, field, i, key, st);
+	  flag = win_loss_judgement(mt);
+	  if(flag != FALSE) break;
 	}
 	check_player_dead(p, field);
 	tower_wall(field,st);
-	flag = win_loss_judgement(mt);
 	system("clear");
       }
+      if(flag != FALSE) break;
     }
   }
   winner(flag);
