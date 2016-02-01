@@ -14,13 +14,20 @@
   }
 */
 
-void message(player p[],int i,int dice_num)
+void message(player p[],int i,int dice_num,main_tower mt[],sub_tower st[])
 {
+  int j;
   printf("Player %d Turn\n", i+1);
   if(i<2) printf("Your team is 'ALPHA'\n");
   else    printf("Your team is 'BETA'\n");
   printf("Your health is %d\n",p[i].health);
   printf("Your remaining num : %d\n",dice_num);
+  for(j=0;j<2;j++)
+    printf("Mt%d Health = %d,",j,mt[j].health);
+  printf("\n");
+  for(j=0;j<4;j++)
+    printf("St%d Health = %d,",j,st[j].health);
+  printf("\n\n");
   /*
     printw("Player %d Turn\n", i+1);
     printw("Your helth is %d\n",p[i].helth);
@@ -33,7 +40,7 @@ void field_disp(int field[][WIDTH], int player)
 {
   int i, j;
 
-  for (i = 0; i < HIEGHT; i++) {
+  for (i = 0; i < HEIGHT; i++) {
     for (j = 0; j < WIDTH; j++) {
       switch (field[i][j])
 	{

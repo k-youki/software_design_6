@@ -2,7 +2,7 @@
 #define FALSE 0
 //Field size
 #define WIDTH 32
-#define HIEGHT 5
+#define HEIGHT 5
 //player num
 #define MAX 4
 //Field States
@@ -63,5 +63,5 @@ typedef struct {
 //extern void init_curses(void);
 
 extern void field_disp(int field[][WIDTH], int player);
-extern void message(player p[], int i, int dice_num);
+extern void message(player p[], int i, int dice_num,main_tower mt[],sub_tower st[]);
 extern void winner(int win);
