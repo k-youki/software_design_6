@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "define.h"
 
-#define _BLACK_ \e[0m
-#define _GREEN_ \e[32m
-#define _RED_   \e[31m
+#define _BLACK_  \e[0m
+#define _RED_    \e[31m
+#define _GREEN_  \e[32m
 #define _YELLOW_ \e[33m
 #define _BLUE_   \e[34m
 
