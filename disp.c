@@ -22,7 +22,21 @@ void field_disp(int field[][WIDTH], int player)
 {
   int i, j;
 
+  printf("  ");
+  for(i=0; i<16; i++){
+    printf("\e[32m%x ",i);
+  }
+  for(i=0; i<16; i++){
+    printf("\e[31m%x ",i);
+  }
+  printf("\n  ");
+  for(i=0; i<64; i++){
+    printf("\e[0m-");
+  }
+  printf("\n");
+  
   for (i = 0; i < HEIGHT; i++) {
+    printf("\e[0m%d|",i);
     for (j = 0; j < WIDTH; j++) {
       switch (field[i][j])
 	{

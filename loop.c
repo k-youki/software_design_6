@@ -179,6 +179,8 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
 
   tower_wall(field,st);
 
+  field_disp(field, -1);
+  printf("\n");
   //Mine set
   mine_installation(field);
   
@@ -191,8 +193,6 @@ void mine_installation(int field[][WIDTH])
   int error_flag;
 
   for(i = 0; i < 2; i++){
-    system("clear");
-    field_disp(field, -1);
     printf("\n");
     if(i == 0)
       printf("ALPHA : Please set Mine\n");
@@ -259,17 +259,17 @@ player dice(player p)
 {
   char c;
   
-  system("clear");
+  //system("clear");
   printf("dice roll ?\n");
 
-  scanf("%c",&c);
+  //scanf("%c",&c);
   getchar();
 
   p.dice_num = rand() % 6 + 1;
   printf("dice_num : %d\n",p.dice_num);
   dice_num_disp(p);
   sleep(1);
-  system("clear");
+  //system("clear");
     
   return p;
 }
