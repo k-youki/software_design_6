@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include "define.h"
 
-#define _BLACK_  \e[0m
-#define _RED_    \e[31m
-#define _GREEN_  \e[32m
-#define _YELLOW_ \e[33m
-#define _BLUE_   \e[34m
+#define c(x) \e[xm
 
 /*
 This source file used escape command
@@ -19,8 +15,8 @@ void message(player p[],int i,int dice_num,main_tower mt[],sub_tower st[])
 {
   int j;
   printf("Player %d Turn\n", i+1);
-  if(i<2) printf("Your team is _GREEN_'ALPHA'_BLACK_\n");
-  else    printf("Your team is _RED_'BETA'_BLACK_\n");
+  if(i<2) printf("Your team is 'ALPHA'\n");
+  else    printf("Your team is 'BETA'\n");
   printf("Your health is %d\n",p[i].health);
   printf("Your remaining num : %d\n",dice_num);
   for(j=0;j<2;j++)
