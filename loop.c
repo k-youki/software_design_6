@@ -19,7 +19,8 @@ int tower_wall(int field[][WIDTH], sub_tower st[]);
 int win_loss_judgement(main_tower mt[]);
 void mine_judgement(player p[], int field[][WIDTH], int player,int x,int y);
 void mine_installation(int field[][WIDTH]);
-int range_check(int x, int y);
+int alpha_range_check(int x, int y);
+int beta_range_check(int x, int y);
 
 int main(void)
 {
@@ -187,33 +188,47 @@ void mine_installation(int field[][WIDTH])
 {
   int i,j;
   int x,y;
+  int error_flag;
 
   for(i = 0; i < 2; i++){
     system("clear");
-    field_disp(field, -1);
     printf("\n");
-    if(i == 0)
+    if(i == 0){
+      field_disp(field, ALPHA_TURN);
       printf("ALPHA : Please set Mine\n");
-    else if(i == 1)
+    }
+    else if(i == 1){
+      field_disp(field, BETA_TURN);
       printf("BETA : Please set Mine\n");
+    }
     printf("NUM : %d\n",MINE_NUM);
     j = 0;
+    error_flag = 0;
     while(j < MINE_NUM){
+      if(error_flag == 1){
+	printf("Error\n");
+	printf("Please enter a different place!!\n");
+      }
+      
       printf("x[%d] = ",j+1);
       scanf("%d",&x);
       printf("y[%d] = ",j+1);
       scanf("%d",&y);
       printf("\n");
+
+      error_flag = 1;
       if(i == 0){
-	if(field[y][x] == EMPTY && range_check(x, y) == 1){
+	if(field[y][x] == EMPTY && alpha_range_check(x, y) == 1){
 	  field[y][x] = ALPHA_MINE;
 	  j++;
+	  error_flag = 0;
 	}
       }
-      else if(i == 1 && range_check(x, y) == 1){
-	if(field[y][x] == EMPTY){
+      else if(i == 1){
+	if(field[y][x] == EMPTY && beta_range_check(x, y) == 1){
 	  field[y][x] = BETA_MINE;
 	  j++;
+	  error_flag = 0;
 	}
       }
     }
@@ -221,9 +236,18 @@ void mine_installation(int field[][WIDTH])
 
 }
 
-int range_check(int x, int y)
+int alpha_range_check(int x, int y)
 {
-  if(x >= 0 && x < WIDTH)
+  if(x >= 0 && x < 16)
+    if(y >= 0 && y < HEIGHT)
+      return 1;
+
+  return 0;
+}
+
+int beta_range_check(int x, int y)
+{
+  if(x >= 17 && x < WIDTH)
     if(y >= 0 && y < HEIGHT)
       return 1;
 
