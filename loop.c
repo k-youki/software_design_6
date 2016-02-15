@@ -209,9 +209,9 @@ void mine_installation(int field[][WIDTH])
       }
       
       printf("x[%d] = ",j+1);
-      scanf("%d",&x);
+      scanf("%x",&x);
       printf("y[%d] = ",j+1);
-      scanf("%d",&y);
+      scanf("%x",&y);
       printf("\n");
 
       error_flag = 1;
@@ -223,6 +223,8 @@ void mine_installation(int field[][WIDTH])
 	}
       }
       else if(i == 1){
+	x = x + 16;
+	y = y + 16;
 	if(field[y][x] == EMPTY && beta_range_check(x, y) == 1){
 	  field[y][x] = BETA_MINE;
 	  j++;
