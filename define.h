@@ -32,9 +32,6 @@
 #define RIGHT 8
 #define LEFT 4
 #define ATTACK 5
-//Mine set turn 
-#define ALPHA_TURN -1
-#define BETA_TURN -2
 
 #define MINE_NUM 4
 
