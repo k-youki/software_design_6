@@ -1,6 +1,16 @@
 #include <stdio.h>
 #include "define.h"
 
+/*
+This source file used escape command
+\e[m0  is setting color Black
+\e[m31 is setting color Red
+\e[m32 is setting color Green
+\e[m34 is setting color Blue
+*/
+
+
+
 void message(player p[],int i,int dice_num,main_tower mt[],sub_tower st[])
 {
   int j;
