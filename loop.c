@@ -211,9 +211,21 @@ void mine_installation(int field[][WIDTH])
       printf("x[%d] = ",j+1);
       scanf("%x",&x);
       printf("y[%d] = ",j+1);
-      scanf("%x",&y);
+      scanf("%d",&y);
       printf("\n");
 
+      do{
+	printf("\n");
+	printf("Error\n");
+	printf("Please enter a different place!!\n");
+	scanf("%*[^\n]%*c");
+	printf("x[%d] = ",j+1);
+	scanf("%x",&x);
+	printf("y[%d] = ",j+1);
+	scanf("%d",&y);
+	printf("\n");
+      }while(x < 0 || x > 15);
+      
       error_flag = 1;
       if(i == 0){
 	if(field[y][x] == EMPTY && alpha_range_check(x, y) == 1){
