@@ -5,7 +5,15 @@
 #define _GREEN_ \e[32m
 #define _RED_   \e[31m
 #define _YELLOW_ \e[33m
-#define _BLUE_ \e[34m
+#define _BLUE_   \e[34m
+
+/*
+This source file used escape command
+\e[m0  is setting color Black
+\e[m31 is setting color Red
+\e[m32 is setting color Green
+\e[m34 is setting color Blue
+*/
 
 void message(player p[],int i,int dice_num,main_tower mt[],sub_tower st[])
 {

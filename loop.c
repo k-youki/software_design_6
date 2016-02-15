@@ -179,8 +179,6 @@ void f_init(int field[][WIDTH], player p[], int entry, main_tower mt[], sub_towe
 
   tower_wall(field,st);
 
-  field_disp(field, -1);
-  printf("\n");
   //Mine set
   mine_installation(field);
   
@@ -193,6 +191,8 @@ void mine_installation(int field[][WIDTH])
   int error_flag;
 
   for(i = 0; i < 2; i++){
+    system("clear");
+    field_disp(field, -1);
     printf("\n");
     if(i == 0)
       printf("ALPHA : Please set Mine\n");
@@ -209,9 +209,9 @@ void mine_installation(int field[][WIDTH])
       }
       
       printf("x[%d] = ",j+1);
-      scanf("%d",&x);
+      scanf("%x",&x);
       printf("y[%d] = ",j+1);
-      scanf("%d",&y);
+      scanf("%x",&y);
       printf("\n");
 
       error_flag = 1;
@@ -223,6 +223,7 @@ void mine_installation(int field[][WIDTH])
 	}
       }
       else if(i == 1){
+	x = x + 16;
 	if(field[y][x] == EMPTY && beta_range_check(x, y) == 1){
 	  field[y][x] = BETA_MINE;
 	  j++;
