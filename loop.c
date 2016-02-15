@@ -192,15 +192,13 @@ void mine_installation(int field[][WIDTH])
 
   for(i = 0; i < 2; i++){
     system("clear");
+    field_disp(field, -1);
     printf("\n");
-    if(i == 0){
-      field_disp(field, ALPHA_TURN);
+    if(i == 0)
       printf("ALPHA : Please set Mine\n");
-    }
-    else if(i == 1){
-      field_disp(field, BETA_TURN);
+    else if(i == 1)
       printf("BETA : Please set Mine\n");
-    }
+    
     printf("NUM : %d\n",MINE_NUM);
     j = 0;
     error_flag = 0;
