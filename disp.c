@@ -1,6 +1,16 @@
 #include <stdio.h>
 #include "define.h"
 
+#define c(x) \e[xm
+
+/*
+This source file used escape command
+\e[m0  is setting color Black
+\e[m31 is setting color Red
+\e[m32 is setting color Green
+\e[m34 is setting color Blue
+*/
+
 void message(player p[],int i,int dice_num,main_tower mt[],sub_tower st[])
 {
   int j;
@@ -22,7 +32,21 @@ void field_disp(int field[][WIDTH], int player)
 {
   int i, j;
 
+  printf("  ");
+  for(i=0; i<16; i++){
+    printf("\e[32m%x ",i);
+  }
+  for(i=0; i<16; i++){
+    printf("\e[31m%x ",i);
+  }
+  printf("\n  ");
+  for(i=0; i<64; i++){
+    printf("\e[0m-");
+  }
+  printf("\n");
+  
   for (i = 0; i < HEIGHT; i++) {
+    printf("\e[0m%d|",i);
     for (j = 0; j < WIDTH; j++) {
       switch (field[i][j])
 	{

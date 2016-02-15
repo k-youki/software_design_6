@@ -19,7 +19,8 @@ int tower_wall(int field[][WIDTH], sub_tower st[]);
 int win_loss_judgement(main_tower mt[]);
 void mine_judgement(player p[], int field[][WIDTH], int player,int x,int y);
 void mine_installation(int field[][WIDTH]);
-int range_check(int x, int y);
+int alpha_range_check(int x, int y);
+int beta_range_check(int x, int y);
 
 int main(void)
 {
@@ -188,6 +189,7 @@ void mine_installation(int field[][WIDTH])
 {
   int i,j;
   int x,y;
+  int error_flag;
 
   for(i = 0; i < 2; i++){
     system("clear");
@@ -197,24 +199,40 @@ void mine_installation(int field[][WIDTH])
       printf("ALPHA : Please set Mine\n");
     else if(i == 1)
       printf("BETA : Please set Mine\n");
+    
     printf("NUM : %d\n",MINE_NUM);
     j = 0;
+    error_flag = 0;
+    printf("Push Enter\n");
     while(j < MINE_NUM){
-      printf("x[%d] = ",j+1);
-      scanf("%d",&x);
-      printf("y[%d] = ",j+1);
-      scanf("%d",&y);
-      printf("\n");
+      if(error_flag == 1){
+	printf("Error\n");
+	printf("Please enter a different place!!\n");
+      }
+      
+      do{
+	scanf("%*[^\n]%*c");
+	printf("x[%d] = ",j+1);
+	scanf("%x",&x);
+	printf("y[%d] = ",j+1);
+	scanf("%d",&y);
+	printf("\n");
+      }while(x < -1 || x > 15);
+      
+      error_flag = 1;
       if(i == 0){
-	if(field[y][x] == EMPTY && range_check(x, y) == 1){
+	if(field[y][x] == EMPTY && alpha_range_check(x, y) == 1){
 	  field[y][x] = ALPHA_MINE;
 	  j++;
+	  error_flag = 0;
 	}
       }
-      else if(i == 1 && range_check(x, y) == 1){
-	if(field[y][x] == EMPTY){
+      else if(i == 1){
+	x = x + 16;
+	if(field[y][x] == EMPTY && beta_range_check(x, y) == 1){
 	  field[y][x] = BETA_MINE;
 	  j++;
+	  error_flag = 0;
 	}
       }
     }
@@ -222,9 +240,18 @@ void mine_installation(int field[][WIDTH])
 
 }
 
-int range_check(int x, int y)
+int alpha_range_check(int x, int y)
 {
-  if(x >= 0 && x < WIDTH)
+  if(x >= 0 && x < 16)
+    if(y >= 0 && y < HEIGHT)
+      return 1;
+
+  return 0;
+}
+
+int beta_range_check(int x, int y)
+{
+  if(x >= 16 && x < WIDTH)
     if(y >= 0 && y < HEIGHT)
       return 1;
 
@@ -236,17 +263,17 @@ player dice(player p)
 {
   char c;
   
-  system("clear");
+  //system("clear");
   printf("dice roll ?\n");
 
-  scanf("%c",&c);
+  //scanf("%c",&c);
   getchar();
 
   p.dice_num = rand() % 6 + 1;
   printf("dice_num : %d\n",p.dice_num);
   dice_num_disp(p);
   sleep(1);
-  system("clear");
+  //system("clear");
     
   return p;
 }
