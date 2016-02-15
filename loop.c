@@ -112,6 +112,7 @@ void p_init(player p[])
     p[i].pow_down = EMPTY;
     p[i].dice_num = 0;
     p[i].health = DEFHP;
+    p[i].mine_flag = NO_MINE;
     if(MAX/2 > i){
       p[i].team = ALPHA;
     }
@@ -354,13 +355,26 @@ int walk(player p[], int field[][WIDTH], int player, int key, sub_tower st[])
   else if (field[y][x] != EMPTY) {
     error = TRUE;
   }
-
   if (error == TRUE) {
     return FALSE;//action NO
   }
   else {
     //Player position update
-    field[keep_y][keep_x] = EMPTY;
+    if(p[player].mine_flag == ON_MINE + 1){
+      if(p[player].team == ALPHA)
+	field[keep_y][keep_x] = ALPHA_MINE;
+      else if(p[player].team == BETA)
+	field[keep_y][keep_x] = BETA_MINE;
+      p[player].mine_flag = NO_MINE;
+    }
+    else{
+      field[keep_y][keep_x] = EMPTY;
+    }
+    
+    if(p[player].mine_flag == ON_MINE){
+      p[player].mine_flag++;
+    }
+
     p[player].x = x;
     p[player].y = y;
     field[y][x] = p[player].num;
@@ -509,10 +523,16 @@ void mine_judgement(player p[], int field[][WIDTH], int player,int x,int y)
     if(field[y][x] == BETA_MINE){
       p[player].health = 0;
     }
+    else if(field[y][x] == ALPHA_MINE){
+      p[player].mine_flag = ON_MINE;
+    }
     break;
   case BETA:
     if(field[y][x] == ALPHA_MINE){
       p[player].health = 0;
+    }
+    else if(field[y][x] == BETA_MINE){
+      p[player].mine_flag = ON_MINE;
     }
     break;
     }

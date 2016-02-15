@@ -17,6 +17,8 @@
 //Player States
 #define DOUBLE 1
 #define DEFHP 40
+#define NO_MINE 0
+#define ON_MINE 1
 //Team
 #define ALPHA 3
 #define BETA 2
@@ -44,6 +46,7 @@ typedef struct {
 	int dice_num;
 	int health;
         int team;
+        int mine_flag;
 } player;
 
 typedef struct {
